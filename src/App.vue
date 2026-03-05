@@ -2,6 +2,9 @@
 import { ref, onMounted } from 'vue';
 import type { Product, ProductResponse } from './types/Product';
 
+import NavBar from './components/NavBar.vue';
+import ProductCard from './components/ProductCard.vue';
+
 const products = ref<Product[]>([]);
 const error = ref<string | null>(null);
 
@@ -23,28 +26,30 @@ const error = ref<string | null>(null);
 </script>
 
 <template>
-  <div class="p-10 bg-gray-50 min-h-screen">
-    <h1 class="text-3xl font-bold text-blue-600 mb-6">Step 4 Check: Data Fetching</h1>
+  
+  <div class="min-h-screen bg-gray-50">
     
-    <div v-if="error" class="text-red-500 font-bold p-4 bg-red-100 rounded">
-      {{ error }}
-    </div>
-    
-    <div v-else-if="products.length === 0" class="text-gray-500">
-      Loading products...
-    </div>
+    <NavBar />
 
-    <div v-else class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div 
-        v-for="product in products" 
-        :key="product.id" 
-        class="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition"
-      >
-        <img :src="product.thumbnail" :alt="product.title" class="h-40 w-full object-cover rounded-md mb-4">
-        <h2 class="font-bold text-lg text-gray-800">{{ product.title }}</h2>
-        <p class="text-green-600 font-semibold">${{ product.price }}</p>
-        <p class="text-gray-500 text-sm mt-2 line-clamp-2">{{ product.description }}</p>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <div v-if="error" class="text-red-500 font-bold p-4 bg-red-100 rounded text-center">
+        {{ error }}
       </div>
-    </div>
+      
+      <div v-else-if="products.length === 0" class="text-gray-500 text-center py-20 text-xl animate-pulse">
+        Loading amazing products...
+      </div>
+
+      <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        
+        <ProductCard 
+          v-for="product in products" 
+          :key="product.id" 
+          :product="product" 
+        />
+        
+      </div>
+    </main>
   </div>
 </template>
