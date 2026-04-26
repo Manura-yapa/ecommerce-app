@@ -1,17 +1,39 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useCartStore } from '../stores/cartStore';
-
 
 const emit = defineEmits(['update:search']);
 const searchQuery = ref('');
-
-
 const cartStore = useCartStore();
+
+
+const isDark = ref(false);
+
+
+onMounted(() => {
+  if (localStorage.getItem('theme') === 'dark') {
+    isDark.value = true;
+    document.documentElement.classList.add('dark');
+  }
+});
+
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value;
+  if (isDark.value) {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  }
+};
+
 
 const onInput = () => {
   emit('update:search', searchQuery.value);
 };
+
 </script>
 
 <template>
@@ -38,6 +60,14 @@ const onInput = () => {
             {{ cartStore.totalItems }}
           </span>
         </router-link>
+
+        <button 
+          @click="toggleTheme" 
+          class="p-2 rounded-full hover:bg-gray-800 transition-colors text-xl"
+          title="Toggle Dark Mode"
+        >
+          {{ isDark ? '☀️' : '🌙' }}
+        </button>
         
         
       </div>
