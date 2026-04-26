@@ -28,7 +28,7 @@ const handleCategoryChange = (category: string) => {
   selectedCategory.value = category;
 };
 
-// Listen for custom events dispatched from the window (our NavBar search)
+
 window.addEventListener('search-updated', (e: Event) => {
   const customEvent = e as CustomEvent;
   searchQuery.value = customEvent.detail;

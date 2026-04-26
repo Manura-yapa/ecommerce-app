@@ -2,11 +2,11 @@
 import { ref } from 'vue';
 import { useCartStore } from '../stores/cartStore';
 
-// Send search text to App.vue
+
 const emit = defineEmits(['update:search']);
 const searchQuery = ref('');
 
-// Initialize the cart store
+
 const cartStore = useCartStore();
 
 const onInput = () => {

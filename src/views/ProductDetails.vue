@@ -4,20 +4,18 @@ import { useRoute, useRouter } from 'vue-router';
 import type { Product } from '../types/Product';
 import { useCartStore } from '../stores/cartStore';
 
-// 1. Get the router and the current URL parameters
+
 const route = useRoute();
 const router = useRouter();
 const cartStore = useCartStore();
-
-// 2. State for a SINGLE product
 const product = ref<Product | null>(null);
 const loading = ref(true);
 const error = ref<string | null>(null);
 
-// 3. Fetch just the one product when the page loads
+
 onMounted(async () => {
   try {
-    // We use route.params.id to get the number from the URL
+    
     const res = await fetch(`https://dummyjson.com/products/${route.params.id}`);
     if (!res.ok) throw new Error('Product not found');
     product.value = await res.json();

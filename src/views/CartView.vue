@@ -1,4 +1,16 @@
 <script setup lang="ts">
+
+
+const handleCheckout = () => {
+  if (cartStore.totalItems === 0) return;
+  
+  
+  alert(`Success! Your order for $${cartStore.totalPrice} has been placed.\nThank you for shopping at TechStore!`);
+  cartStore.clearCart();
+  router.push('/');
+};
+
+
 import { useRouter } from 'vue-router';
 import { useCartStore } from '../stores/cartStore';
 
@@ -70,9 +82,12 @@ const cartStore = useCartStore();
             <span class="font-black text-3xl text-gray-900">${{ cartStore.totalPrice }}</span>
           </div>
           
-          <button class="w-full bg-gray-900 hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition-colors duration-300 shadow-md text-lg">
+          <button 
+            @click="handleCheckout"
+            class="w-full bg-gray-900 hover:bg-blue-600 text-white font-bold py-4 rounded-xl transition-colors duration-300 shadow-md text-lg"
+            >
             Proceed to Checkout
-          </button>
+          </button> 
         </div>
       </div>
 
