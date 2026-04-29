@@ -5,7 +5,7 @@ const handleCheckout = () => {
   if (cartStore.totalItems === 0) return;
   
   
-  alert(`Success! Your order for $${cartStore.totalPrice} has been placed.\nThank you for shopping at TechStore!`);
+  alert(`Success! Your order for $${cartStore.totalPrice} has been placed.\nThank you for shopping at ShopLux!`);
   cartStore.clearCart();
   router.push('/');
 };

@@ -4,12 +4,12 @@ import type { Product } from '../types/Product';
 
 export const useCartStore = defineStore('cart', () => {
  
-  const savedCart = localStorage.getItem('techstore-cart');
+  const savedCart = localStorage.getItem('shoplux-cart');
   const items = ref<Product[]>(savedCart ? JSON.parse(savedCart) : []);
 
   
   watch(items, (newItems) => {
-    localStorage.setItem('techstore-cart', JSON.stringify(newItems));
+    localStorage.setItem('shoplux-cart', JSON.stringify(newItems));
   }, { deep: true });
 
   const totalItems = computed(() => items.value.length);

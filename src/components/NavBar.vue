@@ -41,7 +41,7 @@ const onInput = () => {
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-4 px-2 sm:px-6 lg:px-8">
       
       <div class="order-1">
-        <h1 class="text-2xl font-bold tracking-wider">TechStore<span class="text-blue-500">.</span></h1>
+        <h1 class="text-2xl font-bold tracking-wider">ShopLux<span class="text-blue-500">.</span></h1>
       </div>
       
       <div class="flex items-center gap-4 order-2 md:order-3">
